@@ -1,0 +1,392 @@
+/////////////////////////////// CLASE 4 ///////////////////////////////
+
+// FUNCION
+// function nombre (parametros) {
+//     codigo;
+//     return; //devuelve un resultado, si no lo ponemos, no podemos usar el resultado afuera.
+// }
+
+// SCOPE
+// si se declara afuera, es global, podemos cambiar el nombre adentro.
+// si la declaramos dentro de una funcion, solo existe adentro. Si la llamamos afuera, nos va a decir que es "undefined".
+// si declaramos una variable afuera, y otra adentro, van a ser distintas.
+// si queremos que retorne el resultado de la funcion para mostrarla afuera, usamos return.
+// VAR, no tiene scope. Es siempre global
+
+// SWITCH
+// switch (variable a analizar) {
+//     case "si es x":
+//         codigo;
+//         break;
+//     case "si es x":
+//         codigo;
+//         break;
+//     default:
+//         lo que hace no se cumple los case;
+// }
+
+// FUNCION ANONIMA
+// Funcion sin nombre
+// Se usa para ser pasada como parametro o asiganada a una variable
+// const nombre = (parametro) {codigo}
+
+// FUNCION ANONIMA
+// const nombre = (parametro) => { codigo }
+
+/////////////////////////////// CLASE 5 ///////////////////////////////
+
+/* OBJETOS
+Coleccion de datos relacionados a una entidad. Listado par clave-valor.
+Se separan los clave-valor por comas (",")
+
+let objeto = {
+    propiedad: "string",
+    propiedad2: number,
+    propiedad3: boolean
+}
+
+*/
+
+//OBJETO LITERAL (literalmente escrito o codeado)
+
+let mascota1 = {
+    nombre: "laly",
+    edad: 8,
+    genero: "femenino",
+    castrado: true,
+    duenio: {
+        nombre: "Gonzalo",
+        direccion: "Pasteur 1791",
+    }
+}
+console.log(mascota1);
+
+/*Como acceder a la propiedad, 2 formas.
+1) con [] - ES5
+mascota1["propiedad"]
+
+2) Con objeto.propiedad - ES6
+mascota1.nombre
+
+CAMBIAR VALORES ASIGNADOS
+
+objeto.propiedad = valorNuevo
+mascota1.castrado = false;
+
+ACCEDER A PROPIEDAD DE OBJETO DE OBJETO
+
+mascota1.duenio.dirección
+
+
+OBJETO CONSTRUCTOR /////
+Usamos funcuion constructora
+El nombre empieza con mayuscula.
+Creamos propiedades y valores.
+Entre () van los datos que recibimos cuando la llamamos
+
+fuction Nombre (nombre, edad, calle) {
+    this.nombre = nombre>; va el nombre que damos
+    this.edad = edad; va la edad que vamos
+    this.calle = calle; va la calle que damos
+}
+
+THIS relaciona al objeto en el que vamos a estar en ese momento
+This hace que el valor que agregamos se agregue a 1 objeto, no a todos. Ayuda a decirle que esto es sobre la propiedad del objeto especifico que estoy actuando.
+Ese valor se lo estamos agregando a algo espeficio. 
+Si no estuviera, todos los objetos tendrian el mismo nombre.
+
+*/
+
+function Mascota (nombre, edad, genero, raza, castrado, duenio) {
+    this.nombre = nombre;
+    this.edad = edad;
+    this.genero = genero;
+    this.raza = raza;
+    this.castrado = castrado;
+    this.duenio = duenio;
+}
+
+/*
+COMO HACERLA FUNCIONAR
+Usamos "new", sabe que creamos un objeto
+const nombre = new nombreConstructor ("string", number, true);
+*/
+
+const lila = new Mascota("Lila", 8, "femenino", "callejero", true, "Toledo");
+console.log(lila);
+
+// pedirle todo al usuario
+
+let nombreMascota = prompt("¿Cual es el nombre de tu mascota?");
+let edadMascota = parseInt(prompt("¿Cual la edad de tu mascota?"));
+let generoMascota = prompt("¿Cual es el genero de tu mascota?");
+let razaMascota = prompt("¿Cual la raza de tu mascota?");
+let castradoMascota = prompt("¿Esta castrada tu mascota?");
+let duenoMascota = prompt("Nombre del dueño");
+
+const manchi = new Mascota(nombreMascota, edadMascota, generoMascota, razaMascota, castradoMascota, duenoMascota);
+console.log(manchi);
+
+/* CONVERTIR EL "si" a boolean
+let castradoBoolean;
+if (castradoMascota == "si") {
+    castradoBoolean = true;
+} else {
+    castradoBoolean = false;
+}
+
+luego cambiamos castradoMascota por castradoBoolean
+
+*/
+
+/////////////////////////////// CLASE 6 ///////////////////////////////
+
+ARRAY es un tipo de dato para almacenar valores en forma de Lista
+Pueden ser de distintos tipos, boolean, number, string o tambien OBJETOS o ARRAYS
+Cada elemento tiene un indice, osea su posición en el array. Empieza de 0
+Llamamos nombreArray[posicion]
+
+let miArray = ["bruno", 2, true, "alex", {nombre: "gonzalo", apellido: "ramos"}, ["a", "b"]];
+
+miArray[0]
+Posicion 0 = "bruno"
+devuelve "bruno"
+
+miArray[1]
+Posicion 1 = 2
+devuelve 2
+
+miArray[4].nombre
+Devuelve nombre del objeto en la posicion 4
+"gonzalo"
+
+miArray[5][0]
+elemento en posicion 5 es un array, el primer elemento o cero, es "a"
+devuelve "a"
+
+miArray.lenght 
+nos dice cuantos elementos tiene el array.
+
+METODOS PARA ARRAYS //////////
+
+METODOS PARA AGREGAR AL ARRAY /////
+1) push(); agrega un dato al final del array.
+miArray.push(dato para insertar en el array)
+
+2) unshift(); agrega un dato al principio del array.
+miArray.unshift(dato para agregar)
+
+METODOS PARA BORRAR AL ARRAY /////
+1) shift(); me saca el primer elemento
+miArray.shift();
+
+2) pop(); saca el ultimo elemento
+miArray.pop();
+
+3) splice(); borra la cantidad de elementos basada en las posiciones
+miArray.slice(posicionEmpezar, catidad de elementos a borrar);
+
+////
+
+join(); agarra el array y lo convierte en un string, donde separa cada elemento por el parametro dado
+miArray.join(separador);
+
+concat(); concatena arrays.
+miArray.concat(otroArray);
+
+slice(); devuelve en un array, lo que le seleccionamos
+miArray.slice(de que posicion empieza, en que posicion termina (el ultimo no cuenta) )
+
+
+METODOS PARA VER SI UN ELEMENTO EXISTE
+
+1) indexOf(); en que posicion esta mi elemento
+miArray.indexOf(elemento);
+devuelve posicion del elemento en miArray
+Si no existe, devuelve -1
+
+2) include(); devuelve un Boolean
+miArray.include(elemento); // si existe, true. Si no, false.
+
+
+////
+
+reverse(); agarra un array e invierte el orden de los elementos. El que esta ulitmo, pasa al primero y asiganada
+miArray.reverse();
+MODIFICA AL ARRAY ORIGINAL
+
+ARRAYS DE OBJETOS //////////
+Generan estructuras complejas de datos
+
+Recorrer arrays
+for of; es espefifico para arrays con objetos
+for (let elemento of elementos( { // para los objetos de este array
+    console.log(); // recorremos algo por cada producto, por ejemplo mostrar el nombre y precio de cada producto de productos.
+}
+
+clase pasada: 
+for in; permite recorrer propiedades dentro de un objeto
+
+
+/////////////////////////////// CLASE 7 ///////////////////////////////
+
+ABSTRACCION: agarrar codigo dificil, hacerlo una funcion y ponerle nombre util es mas facil entenderlo que empezar a leerlo
+podemos abstraer valores y acciones
+acciones = funciones
+Funciones de orden superior = retorna funcion, o recibe funcion por parametro
+Funcion que acepta una funcion o que devuelve una funcion
+COMPLEJIZAR
+
+///// FUNCIONES QUE RETORNAN FUNCIONES /////
+fn() { return function }
+
+function mayorQue (num1) {
+    // guarda el parametro en num1
+    return (num2) => num2 > num1; //aca se guarda
+}
+
+let mayorQueDiez = mayorQue(n);
+
+// ese num1, ya queda guardado. Cuando damos el otro parametro, se guarda en num2
+
+// mayorQueDiez = (num2) => {num2 > num1};
+
+function mayorQue (10) {
+    // guarda el parametro en num1
+    return (num2) => num2 > 10; //aca se guarda
+}
+
+let mayorQueDiez = mayorQue(20);
+// el 20 puesto arriba, se guarda aca abajo
+
+mayorQueDiez = (20) => {20 > 10};
+// devuelve true
+
+
+///// FUNCIONES QUE ACEPTAN FUNCIONES COMO PARAMETROS /////
+fn(function) { }
+
+// function porCadaUno (array, funcion) {
+//     for (const elemento of array) {
+//         funcion(elemento);
+//     }
+// }
+
+// let numeros = [5,8,20,44];
+// porCadaUno(numeros, console.log);
+
+// seria como
+
+// funcion porCadaUno (numeros , console.log) {
+//     for (const cadaNumeroDeNumeros of numeros) {
+//         console.log(cadaNumeroDeNumero);
+//     }
+// }
+
+///// METODOS DE BUSQUEDA NATIVOS JS /////
+
+let listaDeAutos = [{
+        marca: "volkswagen",
+        precio: 1000
+    },
+    {
+        marca: "ford",
+        precio: 900
+    },
+    {
+        marca: "fiat",
+        precio: 500
+    },
+    {
+        marca: "volvo",
+        precio: 2000
+    },
+    {
+        marca: "honda",
+        precio: 1500
+    },
+];
+
+FOR EACH ////
+trabaja sobre un array y ejecuta una funcion.
+Acepta funcion como parametro
+Primero el array que queremos trabajar y luego el metodo. 
+miArray.forEach(funcion)
+Por parametro le damos la funcion que queremos hacer.
+
+listaDeAutos.forEach(producto => {
+    console.log(`este ${producto.marca} cuesta ${producto.precio}`)
+});
+// hace log en la consola de cada producto
+
+FIND ////
+va a buscar lo que yo quiera 
+SOLO TRAE EL PRIMERO QUE ENCUENTRA
+
+let buscar = listaDeAutos.find( auto =>  auto.marca == "ford"  );
+// devuelve "ford"
+let buscar2 = listaDeAutos.find( auto =>  auto.precio <= 500);
+// devuelve algun precio de algun auto que sea menor o igual a 500
+
+FILTER////
+trae todos los que hay, aunque haya 1 solo, trae 1 array
+let buscar3 = listaDeAutos.filter( auto =>  auto.precio <= 1000);
+// devuelve objetos volkswagen, for y fiat en ARRAY
+
+SOME /////
+en ves de traer me dice si existe o no. Boolean
+let buscar4 = listaDeAutos.some( auto =>  auto.precio <= 1000);
+// devuelve true si existe, sino false
+
+MAP /////
+va a crear un array con todos los elementos que modificamos. Por ejemplo el precio de los objetos dentro de un array
+let buscar5 = listaDeAutos.map( auto => {
+    return {
+        marca: auto.marca,
+        precio: auto.precio * 1.10
+    }
+});
+// aumentos un 10 porciento el precio a todo, por ejemplo.
+
+REDUCE /////
+especie de acumulador, retorna 1 valor. Resume
+necesita 2 parametros.
+array.reduce(parametro1, desde que numero empieza)
+let buscar6 = listaDeAutos.reduce((acumulador, auto) => acumulador + auto.precio, 0);
+let variable = array.reduce((par1, par2) => {funcion con parametros}, de donde empieza)
+
+SORT /////
+MODIFICA EL ARRAY ORIGINAL
+ordenar, segun criterio
+let marcasAutos = ["volkswagen", "ford", "volvo", "chevrolet", "fiat", "bmw"];
+let ordenar = marcasAutos.sort()
+// ordena alfabeticamente. MODIFICA ARRAY ORIGINAL
+
+let numerosNuevos = [40,5,3,200];
+// agarra 2 elementos y los compara. compara todos con todos. si es menor -1, mayor 1, igual 0.
+console.log(numerosNuevos.sort((a,b) => a - b)) // de menor a mayor
+console.log(numerosNuevos.sort((a,b) => b - a)) // de mayor a menor
+
+listaDeAutos.sort((a,b) => {
+    if (a.marca > b.marca) {
+        return 1;
+    }
+    if (a.marca < b.marca) {
+        return -1;
+    }
+    return 0;
+})
+// ordena alfabeticamente las marcas de autos
+
+///// OBJETO MATH /////
+constantes definidas, como PI o E (euler)
+math.E
+math.PI
+
+math.min y math.max
+nos dan el minimo o mayor de una listaDeAutos
+
+infinito positivo o negativo
+
+
+*/
